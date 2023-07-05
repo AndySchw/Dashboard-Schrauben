@@ -11,6 +11,8 @@ const port = 3000;
 // Initialisieren der Express-App
 const app = express();
 
+app.use(express.static('public'));
+
 // Verbindung zur MongoDB
 const DB_USERNAME = process.env.DB_USERNAME;
 const DB_PASSWORD = process.env.DB_PASSWORD;
@@ -29,10 +31,23 @@ mongoose.connect(connStr, { useNewUrlParser: true, useUnifiedTopology: true })
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './public/views'));
 
+
 // Routen
 app.get('/', async (req, res) => {
   const daten = await MeinModel.find();
   res.render('index', { daten });
+});
+
+
+app.get('/wuerth', async (req, res) => {
+  try {
+    const daten = await MeinModel.find({ Hersteller: 'Wuerth' });
+    res.render('wuerth', { daten });
+    console.log(daten)
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
 });
 
 // Starten des Servers

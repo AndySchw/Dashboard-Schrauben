@@ -10,6 +10,6 @@ const meinSchema = new mongoose.Schema({
   "Datum": Date
 });
 
-const MeinModel = mongoose.model('MeinModel', meinSchema);
+const MeinModel = mongoose.model('MeinModel', meinSchema, "schrauben");
 
 module.exports = MeinModel;
