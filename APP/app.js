@@ -38,12 +38,36 @@ app.get('/', async (req, res) => {
   res.render('index', { daten });
 });
 
+app.get('/impressum', async (req, res) => {
+  res.render('impressum');
+});
+
 
 app.get('/wuerth', async (req, res) => {
   try {
     const daten = await MeinModel.find({ Hersteller: 'Wuerth' });
-    res.render('wuerth', { daten });
     console.log(daten)
+    res.render('wuerth', { daten: JSON.stringify(daten) }); // Daten in einen String umwandeln
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+});
+
+app.get('/heco', async (req, res) => {
+  try {
+    const daten = await MeinModel.find({ Hersteller: 'HECO' });
+    res.render('heco', { daten: JSON.stringify(daten) }); // Daten in einen String umwandeln
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+});
+
+app.get('/swg', async (req, res) => {
+  try {
+    const daten = await MeinModel.find({ Hersteller: 'SWG' });
+    res.render('swg', { daten: JSON.stringify(daten) }); // Daten in einen String umwandeln
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');

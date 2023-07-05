@@ -2,14 +2,11 @@ extends ../templates/layout.pug
 
 
 block body
-    h1 hallo vom body wuerth
-    h1 Schrauben Daten
-    each daten in daten
-      p= daten.Hersteller
-      p= daten.Schraube
-      p= daten.Preis
-      p= daten.VerkaufteMenge
-      p= daten.Datum
 
-
-block footer
+    h1 Wuerth Daten
+    canvas#myChart
+    script(src="https://cdn.jsdelivr.net/npm/chart.js")
+    script(src="../includes/script/chart.js")
+    script.
+        const daten = !{daten};
+        createChart('myChart', daten);
