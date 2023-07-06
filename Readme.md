@@ -18,9 +18,9 @@ Beispiel:
 
 pug
 
-```ul
+``` ul
   each schraube in schrauben
-    li= schraube.name```
+    li= schraube.name ```
 
 
 Express.js
@@ -30,9 +30,9 @@ Express.js ist ein Webanwendungs-Framework für Node.js. Es ist minimal, flexibe
 Beispiel:
 
 javascript
-```app.get('/', (req, res) => {
+``` app.get('/', (req, res) => {
   res.render('index', { title: 'Dashboard-Schrauben', message: 'Willkommen zu unserem Schrauben-Dashboard!' });
-});```
+}); ```
 
 
 Chart.js
