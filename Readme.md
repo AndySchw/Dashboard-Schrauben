@@ -5,9 +5,15 @@ Dieses Projekt stellt ein Dashboard bereit, das Daten über Schrauben in verschi
 ## Installation
 
 Klonen Sie das Repository auf Ihren lokalen Computer.
+Nutzen Sie Ihr MongoDB Accound oder erstellen Sie einen neuen, damit sie die Daten aus "output.json" hineinladen können und wieder einlesen. Dazu ist es Wichtig eine .env mit den nötigen Benutzerdaten in dem Order APP zu erstllen um auf die Datenbank zu zugreifen.
 Installieren Sie die erforderlichen npm-Pakete, indem Sie npm install in der Wurzel des geklonten Verzeichnisses ausführen.
 
 ## Technologien
+
+### Mongoose
+
+Mongoose ist ein Object Data Modeling (ODM) Werkzeug für Node.js und MongoDB. Es bietet eine einfache und strukturierte Methode, um mit MongoDB zu arbeiten, indem es Schema-basierte Lösungen bietet.
+Hiermit wird das Projekt auch mit der MongoDB Atlas verbunden.
 
 ### Pug
 
