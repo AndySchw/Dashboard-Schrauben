@@ -1,55 +1,45 @@
-# Projekt: Verkaufsdaten-Dashboard
+Dashboard-Schrauben
+Dieses Projekt stellt ein Dashboard bereit, das Daten über Schrauben in verschiedenen Diagrammen darstellt. Das Dashboard wird mithilfe von Pug und Express.js gerendert und dargestellt.
 
-## Überblick
+Installation
+Klonen Sie das Repository auf Ihren lokalen Computer.
 
-Das Ziel dieses Projekts ist die Erstellung eines interaktiven Dashboards zur Visualisierung von Verkaufsdaten für verschiedene Schraubenarten von verschiedenen Herstellern. Dabei **kann** ChartJs zur Darstellung der Daten und Bootstrap zur Gestaltung der Benutzeroberfläche verwendet werden.
+Installieren Sie die erforderlichen npm-Pakete, indem Sie npm install in der Wurzel des geklonten Verzeichnisses ausführen.
 
-Das Dashboard soll die unten aufgeführten Anforderungen erfüllen und dabei auf Benutzerfreundlichkeit und das Design der Benutzeroberfläche achten.
+Pug und Express.js
+Pug ist eine Vorlagensprache, die HTML generiert. Wir verwenden Pug in diesem Projekt, um dynamisches HTML zu erstellen, das unsere Schraubendaten darstellt.
 
-## Anforderungen
-![mockup.jepg](mockup.jpeg)
+Express.js ist ein Framework für Node.js, das die Entwicklung von Webanwendungen vereinfacht. Wir verwenden Express.js in diesem Projekt, um unsere Webanwendung zu hosten und Anfragen zu verarbeiten.
 
-### Übersichts-Dashboard:
+Verwendung von Pug
+In diesem Projekt haben wir Pug verwendet, um die Seiten unseres Dashboards zu erstellen. Pug ermöglicht es uns, dynamisches HTML zu schreiben, was bedeutet, dass wir Variablen und Logik direkt in unser HTML einbetten können.
 
-1. **Top 3 Schrauben**: Zeigt die drei Schraubenarten, die die höchsten Verkaufszahlen aufweisen.
+Zum Beispiel können wir Pug so verwenden, um eine Liste von Schrauben zu erstellen:
 
-2. **Top 3 Hersteller**: Präsentiert die drei Hersteller mit den höchsten Verkaufszahlen.
+pug
+Copy code
+ul
+  each schraube in schrauben
+    li= schraube.name
+Verwendung von Express.js
+Wir verwenden Express.js, um unsere Pug-Vorlagen zu rendern und sie als Antwort auf HTTP-Anfragen zu senden. Hier ist ein einfaches Beispiel für eine Express-Route, die eine Pug-Vorlage rendert:
 
-3. **Bester Verkaufstag insgesamt**: Identifiziert und zeigt den Tag mit den höchsten Gesamtverkaufszahlen an.
+javascript
+Copy code
+app.get('/', (req, res) => {
+  res.render('index', { title: 'Dashboard-Schrauben', message: 'Willkommen zu unserem Schrauben-Dashboard!' });
+});
+In diesem Beispiel wird die 'index' Pug-Vorlage gerendert und als Antwort auf GET-Anfragen an die Startseite unserer Website gesendet. Die 'title' und 'message' Variablen werden an die Vorlage übergeben und können dort verwendet werden.
 
-### Erweiterte Anforderungen:
+Verwendung
+Starten Sie die Anwendung mit npm start.
 
-1. **Durchschnittlich beste Verkaufstag pro Woche**: Ermittelt und visualisiert den Wochentag, an dem im Durchschnitt die besten Verkaufszahlen erzielt werden.
+Öffnen Sie einen Webbrowser und navigieren Sie zu http://localhost:3000, um das Dashboard anzuzeigen.
 
-2. **Prozentualer Anteil der Schraubenverkäufe von Hersteller X**: Berechnet und visualisiert den prozentualen Anteil der verkauften Schrauben, die von einem bestimmten Hersteller (Hersteller X) stammen.
-
-### Filter-Menü:
-
-Das Dashboard sollte ein Filter-Menü enthalten, das den Benutzern ermöglicht, folgende spezifische Daten anzuzeigen:
-
-1. **Umsatz pro Schraubenart pro Monat**: Zeigt den Umsatz für jede Schraubenart in einem ausgewählten Monat an.
-
-2. **Umsatz pro Schraubenart pro Hersteller pro Monat**: Zeigt den Umsatz für jede Schraubenart eines bestimmten Herstellers in einem ausgewählten Monat an.
-
-3. **Gesamtumsatz pro Hersteller für einen Monat**: Präsentiert den Gesamtumsatz eines Herstellers für einen ausgewählten Monat.
+Ich hoffe, dass dies hilfreich ist! Bitte lassen Sie mich wissen, wenn Sie Fragen haben oder weitere Informationen benötigen.
 
 
-### Hersteller Einzelansicht:
-![hersteller](hersteller.jpeg)
 
-Füge pro Hersteller eine Einzelansicht hinzu, die alle relevanten Analysen (Umsatz, Menge, Trends) für diesen Hersteller darstellt.
 
-Binde das Logo des Herstellers ein und füge die passenden Diagramme hinzu. 
-### Regeln
 
-1. Erstellt **Scrum Tickets**, um die Aufgaben des Projekts zu organisieren und zu verfolgen.
 
-2. Erstellt eine **Dokumentation** (Readme.md), die alle relevanten Informationen zum Projekt enthält, wie z.B. Installationsanleitungen, Anforderungen, Anleitungen zur Verwendung des Dashboards usw.
-
-3. Nutzt **GitHub**, um den Code des Projekts zu verwalten und die Zusammenarbeit im Team zu erleichtern.
-
-4. Führt täglich die **Hausaufgabe** durch, in der ihr den Fortschritt eures Projekts dokumentiert und mögliche Herausforderungen oder Erfolge besprecht.
-
-5. Bereitet euch auf eine Demo-Präsentation des Dashboards vor einem Publikum vor, um eure Ergebnisse zu präsentieren und Feedback zu erhalten.
-
-Viel Erfolg bei eurem Projekt!

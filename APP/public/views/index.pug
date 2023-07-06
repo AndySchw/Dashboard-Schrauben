@@ -1,5 +1,38 @@
-include ./head.pug
-    body
-        include ./nav.pug
-        include ./body.pug
-        include ./footer.pug
+extends ../templates/layout.pug
+
+block body
+    div.kartendiv
+        div.dashdiv
+            h1 Die 3 meistverkaufen Schrauben
+            canvas#myChart
+            script(src="https://cdn.jsdelivr.net/npm/chart.js")
+            script(src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns")
+            script(src="../includes//script/chart.js") 
+            
+            script.
+                const daten = JSON.parse(JSON.stringify(!{daten}));
+                createChart('myChart', daten);
+
+
+        div.dashdiv
+            h1 Beste Verkaufsmenge der Hersteller
+            canvas#topHerstellerLineChart
+            script(src="https://cdn.jsdelivr.net/npm/chart.js")
+            script(src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns")
+            script(src="../includes/script/lineChart.js")
+            script.
+                const topHersteller = !{topHersteller};
+                createLineChart('topHerstellerLineChart', topHersteller);
+        div.dashdiv
+            div.container
+            h1 Bubble Chart der Hersteller
+            canvas#bubbleChart
+            div(id="bubbleData" style="display:none")= JSON.stringify(bubbleData)
+            script(src="https://cdn.jsdelivr.net/npm/chart.js")
+            script(src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns")
+            script(src="../includes/script/bubbleChart.js")
+            script.
+                createBubbleChart('bubbleChart', JSON.parse(document.getElementById('bubbleData').textContent));
+
+
+

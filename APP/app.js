@@ -34,9 +34,38 @@ app.set('views', path.join(__dirname, './public/views'));
 
 // Routen
 app.get('/', async (req, res) => {
-  const daten = await MeinModel.find();
-  res.render('index', { daten });
+  try {
+    const daten = await MeinModel.aggregate([
+      { $group: { _id: '$Schraube', totalMenge: { $sum: '$VerkaufteMenge' } } },
+      { $sort: { totalMenge: -1 } },
+      { $limit: 3 }
+    ]);
+
+    const topHersteller = await MeinModel.aggregate([
+      { $group: { _id: '$Hersteller', totalMenge: { $sum: '$VerkaufteMenge' } } },
+      { $sort: { totalMenge: -1 } },
+      { $limit: 3 }
+    ]);
+
+    const bubbleData = await MeinModel.aggregate([
+      { $group: { _id: "$Hersteller", VerkaufteMenge: { $sum: "$VerkaufteMenge" }, Datum: { $max: "$Datum" } } },
+      { $sort: { VerkaufteMenge: -1 } }
+    ]);
+
+    res.render('index', { 
+      daten: JSON.stringify(daten),
+      topHersteller: JSON.stringify(topHersteller),
+      bubbleData: JSON.stringify(bubbleData) 
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
 });
+
+
+
+
 
 app.get('/impressum', async (req, res) => {
   res.render('impressum');
@@ -52,8 +81,8 @@ app.get('/wuerth', async (req, res) => {
 
     const alleDaten = await MeinModel.find({ Hersteller: 'Wuerth' });
 
-    console.log(daten);
-    console.log(alleDaten);
+    // console.log(daten);
+    // console.log(alleDaten);
 
     res.render('wuerth', { daten: JSON.stringify(daten), alleDaten: JSON.stringify(alleDaten) });
   } catch (err) {
@@ -73,8 +102,8 @@ app.get('/heco', async (req, res) => {
 
     const alleDaten = await MeinModel.find({ Hersteller: 'HECO' });
 
-    console.log(daten);
-    console.log(alleDaten);
+    // console.log(daten);
+    // console.log(alleDaten);
 
     res.render('heco', { daten: JSON.stringify(daten), alleDaten: JSON.stringify(alleDaten) });
   } catch (err) {
@@ -92,8 +121,8 @@ app.get('/swg', async (req, res) => {
 
     const alleDaten = await MeinModel.find({ Hersteller: 'SWG' });
 
-    console.log(daten);
-    console.log(alleDaten);
+    // console.log(daten);
+    // console.log(alleDaten);
 
     res.render('swg', { daten: JSON.stringify(daten), alleDaten: JSON.stringify(alleDaten) });
   } catch (err) {

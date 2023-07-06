@@ -7,8 +7,8 @@ function createChart(canvasId, daten) {
       datasets: [{
         label: 'VerkaufteMenge',
         data: daten.map(d => d.totalMenge),
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: daten.map((d, i) => `hsla(${i * 360 / daten.length}, 70%, 50%, 0.2)`), // Varieert den Hue-Wert für jeden Balken
+        borderColor: daten.map((d, i) => `hsla(${i * 360 / daten.length}, 70%, 50%, 1)`), // Varieert den Hue-Wert für jeden Balken
         borderWidth: 1
       }]
     },
