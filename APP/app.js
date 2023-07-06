@@ -45,19 +45,38 @@ app.get('/impressum', async (req, res) => {
 
 app.get('/wuerth', async (req, res) => {
   try {
-    const daten = await MeinModel.find({ Hersteller: 'Wuerth' });
-    console.log(daten)
-    res.render('wuerth', { daten: JSON.stringify(daten) }); // Daten in einen String umwandeln
+    const daten = await MeinModel.aggregate([
+      { $match: { Hersteller: 'Wuerth' } },
+      { $group: { _id: '$Schraube', totalMenge: { $sum: '$VerkaufteMenge' } } },
+    ]);
+
+    const alleDaten = await MeinModel.find({ Hersteller: 'Wuerth' });
+
+    console.log(daten);
+    console.log(alleDaten);
+
+    res.render('wuerth', { daten: JSON.stringify(daten), alleDaten: JSON.stringify(alleDaten) });
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
   }
 });
 
+
+
 app.get('/heco', async (req, res) => {
   try {
-    const daten = await MeinModel.find({ Hersteller: 'HECO' });
-    res.render('heco', { daten: JSON.stringify(daten) }); // Daten in einen String umwandeln
+    const daten = await MeinModel.aggregate([
+      { $match: { Hersteller: 'HECO' } },
+      { $group: { _id: '$Schraube', totalMenge: { $sum: '$VerkaufteMenge' } } },
+    ]);
+
+    const alleDaten = await MeinModel.find({ Hersteller: 'HECO' });
+
+    console.log(daten);
+    console.log(alleDaten);
+
+    res.render('heco', { daten: JSON.stringify(daten), alleDaten: JSON.stringify(alleDaten) });
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
@@ -66,13 +85,23 @@ app.get('/heco', async (req, res) => {
 
 app.get('/swg', async (req, res) => {
   try {
-    const daten = await MeinModel.find({ Hersteller: 'SWG' });
-    res.render('swg', { daten: JSON.stringify(daten) }); // Daten in einen String umwandeln
+    const daten = await MeinModel.aggregate([
+      { $match: { Hersteller: 'SWG' } },
+      { $group: { _id: '$Schraube', totalMenge: { $sum: '$VerkaufteMenge' } } },
+    ]);
+
+    const alleDaten = await MeinModel.find({ Hersteller: 'SWG' });
+
+    console.log(daten);
+    console.log(alleDaten);
+
+    res.render('swg', { daten: JSON.stringify(daten), alleDaten: JSON.stringify(alleDaten) });
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
   }
 });
+
 
 // Starten des Servers
 app.listen(port, () => console.log(`Server läuft auf Port ${port}`));

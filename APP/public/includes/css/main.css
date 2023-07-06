@@ -70,3 +70,18 @@ body{
 }
 
 /* /////////// Impressum Ende //////////////////////////////////////////// */
+
+/* /////////// Dash Div //////////////////////////////////////////// */
+
+.kartendiv{
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+}
+
+
+.dashdiv{
+  width: 450px;
+  height: 600px;
+}

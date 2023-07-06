@@ -1,12 +1,14 @@
 extends ../templates/layout.pug
 
-
 block body
-
-    h1 Wuerth Daten
-    canvas#myChart
-    script(src="https://cdn.jsdelivr.net/npm/chart.js")
-    script(src="../includes/script/chart.js")
-    script.
-        const daten = !{daten};
-        createChart('myChart', daten);
+    div.katendiv
+        div.dashdiv
+            h1 Verkaufe Schrauben
+            canvas#myChart
+            script(src="https://cdn.jsdelivr.net/npm/chart.js")
+            script(src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns")
+            script(src="../includes//script/chart.js") 
+            
+            script.
+                const daten = JSON.parse(JSON.stringify(!{daten}));
+                createChart('myChart', daten);
