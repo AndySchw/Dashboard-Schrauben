@@ -35,21 +35,21 @@ app.set('views', path.join(__dirname, './public/views'));
 // Routen
 app.get('/', async (req, res) => {
   try {
-    const daten = await MeinModel.aggregate([
-      { $group: { _id: '$Schraube', totalMenge: { $sum: '$VerkaufteMenge' } } },
-      { $sort: { totalMenge: -1 } },
-      { $limit: 3 }
-    ]);
-
-    const topHersteller = await MeinModel.aggregate([
-      { $group: { _id: '$Hersteller', totalMenge: { $sum: '$VerkaufteMenge' } } },
-      { $sort: { totalMenge: -1 } },
-      { $limit: 3 }
-    ]);
-
-    const bubbleData = await MeinModel.aggregate([
-      { $group: { _id: "$Hersteller", VerkaufteMenge: { $sum: "$VerkaufteMenge" }, Datum: { $max: "$Datum" } } },
-      { $sort: { VerkaufteMenge: -1 } }
+    const [daten, topHersteller, bubbleData] = await Promise.all([
+      MeinModel.aggregate([
+        { $group: { _id: '$Schraube', totalMenge: { $sum: '$VerkaufteMenge' } } },
+        { $sort: { totalMenge: -1 } },
+        { $limit: 3 }
+      ]),
+      MeinModel.aggregate([
+        { $group: { _id: "$Hersteller", totalMenge: { $sum: "$VerkaufteMenge" } } },
+        { $sort: { totalMenge: -1 } },
+        { $limit: 3 }
+      ]),
+      MeinModel.aggregate([
+        { $group: { _id: '$Hersteller', Datum: { $max: '$Datum' }, VerkaufteMenge: { $sum: '$VerkaufteMenge' } } },
+        { $sort: { VerkaufteMenge: -1 } }
+      ])
     ]);
 
     res.render('index', { 
@@ -62,7 +62,6 @@ app.get('/', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
-
 
 
 
