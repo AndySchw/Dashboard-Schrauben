@@ -5,7 +5,7 @@ Dieses Projekt stellt ein Dashboard bereit, das Daten über Schrauben in verschi
 ## Installation
 
 Klonen Sie das Repository auf Ihren lokalen Computer.
-Nutzen Sie Ihr MongoDB Accound oder erstellen Sie einen neuen, damit sie die Daten aus "output.json" hineinladen können und wieder einlesen. Dazu ist es Wichtig eine .env mit den nötigen Benutzerdaten in dem Order APP zu erstllen um auf die Datenbank zu zugreifen.
+Nutzen Sie Ihr MongoDB Accound oder erstellen Sie einen neuen, damit sie die Daten aus "output.json" reinladen können und wieder einlesen. Dazu ist es Wichtig eine .env mit den nötigen Benutzerdaten in dem Order APP zu erstllen um auf die Datenbank zu zugreifen.
 Installieren Sie die erforderlichen npm-Pakete, indem Sie npm install in der Wurzel des geklonten Verzeichnisses ausführen.
 
 ## Technologien

@@ -35,7 +35,7 @@ app.set('views', path.join(__dirname, './public/views'));
 // Routen
 app.get('/', async (req, res) => {
   try {
-    const [daten, topHersteller, bubbleData] = await Promise.all([
+    const [daten, topHersteller, verkaufMaxTagProFirma] = await Promise.all([
       MeinModel.aggregate([
         { $group: { _id: '$Schraube', totalMenge: { $sum: '$VerkaufteMenge' } } },
         { $sort: { totalMenge: -1 } },
@@ -47,21 +47,33 @@ app.get('/', async (req, res) => {
         { $limit: 3 }
       ]),
       MeinModel.aggregate([
-        { $group: { _id: '$Hersteller', Datum: { $max: '$Datum' }, VerkaufteMenge: { $sum: '$VerkaufteMenge' } } },
-        { $sort: { VerkaufteMenge: -1 } }
+        { $group: { 
+          _id: { 
+            Hersteller: "$Hersteller", 
+            Datum: "$Datum"
+          }, 
+          VerkaufteMenge: { $sum: "$VerkaufteMenge" } 
+        }},
+        { $sort: { VerkaufteMenge: -1 } },
+        { $group: {
+          _id: "$_id.Hersteller",
+          Datum: { $first: "$_id.Datum" },
+          VerkaufteMenge: { $first: "$VerkaufteMenge" }
+        }}
       ])
     ]);
 
     res.render('index', { 
       daten: JSON.stringify(daten),
       topHersteller: JSON.stringify(topHersteller),
-      bubbleData: JSON.stringify(bubbleData) 
+      verkaufMaxTagProFirma: JSON.stringify(verkaufMaxTagProFirma)
     });
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
   }
 });
+
 
 
 

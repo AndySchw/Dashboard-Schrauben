@@ -25,14 +25,19 @@ block body
                 createLineChart('topHerstellerLineChart', topHersteller);
         div.dashdiv
             
-            h1 Bubble Chart der Hersteller
-            canvas#bubbleChart
-            div(id="bubbleData" style="display:none")= JSON.stringify(bubbleData)
+            h1 Bester Verkaufstag der Hersteller
+            canvas#topHersteller
             script(src="https://cdn.jsdelivr.net/npm/chart.js")
             script(src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns")
-            script(src="../includes/script/bubbleChart.js")
+            script(src="../includes/script/pieChart.js")
             script.
-                createBubbleChart('bubbleChart', JSON.parse(document.getElementById('bubbleData').textContent));
+                document.addEventListener('DOMContentLoaded', (event) => {
+                    const verkaufMaxTagProFirma = !{verkaufMaxTagProFirma};
+                    createPieChart('topHersteller', verkaufMaxTagProFirma);
+                });
+
+                
+
 
 
 
