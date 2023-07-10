@@ -1,6 +1,20 @@
 # Dashboard-Schrauben
 
-Dieses Projekt stellt ein Dashboard bereit, das Daten über Schrauben in verschiedenen Diagrammen darstellt. Das Dashboard wird mit der Vorlagen-Engine Pug und dem Framework Express.js gerendert und dargestellt.
+Diese Anwendung ist eine Webanwendung, die auf Node.js basiert und das Express.js-Framework sowie die MongoDB-Datenbank verwendet. Sie dient zur Visualisierung von Daten rund um den Verkauf von Schrauben verschiedener Hersteller.
+
+Auf der Startseite der Anwendung werden drei verschiedene Diagramme dargestellt:
+
+Das erste Diagramm zeigt die drei meistverkauften Schraubentypen an. Es verwendet Daten, die aus einer MongoDB-Aggregationsabfrage stammen, um die Gesamtverkaufsmenge für jeden Schraubentyp zu ermitteln und diese in absteigender Reihenfolge zu sortieren.
+
+Das zweite Diagramm zeigt die Hersteller mit der besten Verkaufsmenge. Es verwendet eine ähnliche Aggregationsabfrage wie das erste Diagramm, jedoch wird hier die Gesamtverkaufsmenge für jeden Hersteller ermittelt.
+
+Das dritte Diagramm zeigt den besten Verkaufstag der Hersteller. Hierfür werden die Daten gruppiert nach Hersteller und Datum, dann sortiert nach Verkaufsmenge und schließlich die höchste Verkaufsmenge für jeden Hersteller ermittelt.
+
+Zusätzlich gibt es für jeden der drei Haupt-Hersteller (Wuerth, HECO und SWG) eine eigene Seite, die ähnliche Diagramme wie auf der Startseite, jedoch speziell für den jeweiligen Hersteller, anzeigt.
+
+Die Anwendung setzt zudem das Pug-Template-System für die HTML-Struktur ein und verwendet die Chart.js-Bibliothek zur Erstellung der Diagramme.
+
+Insgesamt dient diese Anwendung dazu, einen Überblick über die Verkaufsdaten von Schrauben verschiedener Hersteller zu geben und diese Informationen auf eine leicht verständliche und visuell ansprechende Weise zu präsentieren.
 
 ## Installation
 

@@ -85,8 +85,8 @@ body{
 
 .dashdiv{
   margin: 20px;
-  width: 500px;
-  height: 400px;
+  width: 400px;
+  height: 500px;
   border: solid rgb(26, 194, 154);
   border-radius: 30px;
   padding: 20px;
@@ -95,9 +95,13 @@ body{
 }
 
 
-canvas {
+/* canvas {
   
   height: 320px !important;
-  
+  width: 400px !important;
   text-align: center !important;
+} */
+
+#piCchart{
+  height: 100px;
 }
