@@ -68,3 +68,7 @@ Starten Sie die Anwendung mit "node .\app.js" in der Powershell.
 
 Öffnen Sie einen Webbrowser und navigieren Sie zu http://localhost:3000, um das Dashboard anzuzeigen.
 
+## Weitereintwicklung
+
+Für weiter Sprints gibt es viele Ideen yum erweitern der App. Es gehören auf jeden fall mehr Charts zur übersicht vorallem bei Herstellern.
+Persönlich wären Dropdown Menus die dafür sorgen interaktiv die Charts anzupassen an gewünschte Daten. Auch Datenerfassung sollte nich tauser acht gelassen werden.
